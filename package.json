@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-datasource-rest": "^0.3.2",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "graphql-yoga": "^1.17.4"
+    "graphql-yoga": "^1.17.4",
+    "request": "^2.88.0"
   }
 }

@@ -1,23 +1,36 @@
 const { GraphQLServer } = require('graphql-yoga')
-var express = require('express')
-var app = express()
+// const Weather = require('./resolvers/Weather')
+const WeatherAPI = require('../apiDatasource/weatherAPI');
 
-// 1
 const typeDefs = `
 type Query {
   info: String!
+  weather(city: String!): Weather
 }
-`
+
+type Weather {
+  id: Int!
+  name: String!
+  condition: String!
+}`
 
 // 2
 const resolvers = {
   Query: {
-    info: () => `This is the API of a Hackernews Clone`
+    info: () => `This is the API of a Hackernews Clone`,
+    weather: (root, { city }) => WeatherAPI(city)
+  },
+
+  Weather: {
+    id: (parent) => parent.id,
+    name: (parent) => parent.name,
+    condition: (parent) => parent.condition
   }
 }
 
 // 3
 const server = new GraphQLServer({
+  // typeDefs: './src/schema.graphql',
   typeDefs,
   resolvers,
 })

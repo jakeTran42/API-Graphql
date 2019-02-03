@@ -1,0 +1,10 @@
+type Query {
+    info: String!
+    weather(city: String!): Weather
+}
+
+type Weather {
+    id: Int!
+    name: String!
+    condition: String!
+}
