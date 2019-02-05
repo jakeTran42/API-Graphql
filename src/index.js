@@ -18,7 +18,7 @@ type Weather {
 const resolvers = {
   Query: {
     info: () => `This is the API of a Hackernews Clone`,
-    weather: (root, { city }) => WeatherAPI(city)
+    weather: (parent, { city }) => WeatherAPI(city)
   },
 
   Weather: {
