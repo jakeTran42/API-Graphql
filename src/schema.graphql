@@ -1,10 +1,30 @@
 type Query {
     info: String!
-    weather(city: String!): Weather
+    chuckJoke: Chuck!
+    api(city: String!): API!
 }
 
 type Weather {
     id: Int!
     name: String!
     condition: String!
+    iconURL: String!
+}
+
+type Article {
+    source: String!
+    title: String!
+    articleURL: String!
+    articleImg: String!
+}
+
+type Chuck {
+    id: Int!
+    joke: String!
+}
+
+type API {
+    weather: Weather!
+    news: [Article!]!
+    chuckJoke: Chuck!
 }

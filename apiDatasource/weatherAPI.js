@@ -1,7 +1,7 @@
 require('dotenv').config()
-const request = require('request')
+const request = require("request-promise");
 
-module.exports = WeatherAPI = (city) => {
+module.exports = WeatherAPI = async (city) => {
     const apiKey = process.env.WEATHER_KEY
 
     var options = { method: 'GET',
@@ -11,20 +11,15 @@ module.exports = WeatherAPI = (city) => {
             APPID: `${apiKey}` },
         headers: 
         { 'Postman-Token': '774af781-d4b0-45b7-94f6-7c6e14fb8865',
-            'cache-control': 'no-cache' } 
+            'cache-control': 'no-cache' },
+        json: true
     };
 
-    request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    var body = JSON.parse(body)
-
-    const data = {id: body.id, name: body.name, condition: body.weather[0].description}
-
-    console.log(data)
-
-    return data
-
-    });
-
+    try {
+        var result = await request(options);
+        const data = { id: result.id, name: result.name, condition: result.weather[0].description, iconURL: `http://openweathermap.org/img/w/${result.weather[0].icon}.png` }
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
 }
