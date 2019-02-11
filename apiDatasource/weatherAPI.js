@@ -17,7 +17,7 @@ module.exports = WeatherAPI = async (city) => {
 
     try {
         var result = await request(options);
-        const data = { id: result.id, name: result.name, condition: result.weather[0].description, iconURL: `http://openweathermap.org/img/w/${result.weather[0].icon}.png` }
+        const data = { apiID: 2, identifier: 'weather', id: result.id, name: result.name, condition: result.weather[0].description, iconURL: `http://openweathermap.org/img/w/${result.weather[0].icon}.png` }
         return data;
     } catch (err) {
         console.error(err);

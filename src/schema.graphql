@@ -1,10 +1,11 @@
 type Query {
     info: String!
-    chuckJoke: Chuck!
-    api(city: String!): API!
+    api: API!
 }
 
 type Weather {
+    apiID: Int!
+    identifier: String!
     id: Int!
     name: String!
     condition: String!
@@ -18,13 +19,45 @@ type Article {
     articleImg: String!
 }
 
+type Articles {
+    apiID: Int!
+    identifier: String!
+    news: [Article!]!
+}
+
 type Chuck {
+    apiID: Int!
+    identifier: String!
     id: Int!
     joke: String!
 }
 
+type Anime {
+    id: Int!
+    title: String!
+    rating: Float!
+    nsfw: Boolean!
+    status: String!
+    poster: String!
+}
+
+type Animes {
+    apiID: Int!
+    identifier: String!
+    animes: [Anime!]!
+}
+
+type Advice {
+    apiID: Int!
+    identifier: String!
+    id: Int!
+    advice: String!
+}
+
 type API {
-    weather: Weather!
-    news: [Article!]!
+    weather(city: String!): Weather!
     chuckJoke: Chuck!
+    newsfeed: Articles!
+    anime: Animes!
+    advice: Advice!
 }

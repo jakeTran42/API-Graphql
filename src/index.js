@@ -1,15 +1,11 @@
 const { GraphQLServer } = require('graphql-yoga')
 const Query = require('./resolvers/Query')
-const { Chuck } = require('./resolvers/Chuck')
-const {Article} = require('./resolvers/Article')
-const { Weather } = require('./resolvers/Weather')
+const API = require('./resolvers/APIs')
 
 // 2
 const resolvers = {
   Query,
-  Chuck,
-  // Article,
-  // Weather
+  API
 }
 
 // 3

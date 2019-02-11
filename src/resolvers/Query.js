@@ -1,61 +1,27 @@
-const WeatherAPI = require('../../apiDatasource/weatherAPI')
-const ArticleAPI = require('../../apiDatasource/newsAPI')
 const ChuckAPI = require('../../apiDatasource/chuckAPI')
-
-// const Chuck = require('./resolvers/Chuck')
-// const Article = require('./resolvers/Article')
-// const Weather = require('./resolvers/Weather')
-
-// async function weather(parent, { city }) {
-//     const data = await WeatherAPI(city)
-//     return {
-//         id: data.id,
-//         name: data.name,
-//         condition: data.condition,
-//         iconURL: `http://openweathermap.org/img/w/${data.icon}.png`
-//     }
-// }
-
-// async function news() {
-//     const data = await ArticleAPI.data
-//     return data
-// }
-
-// async function chuckJoke() {
-//     const data = await ChuckAPI()
-//     return data
-// }
+const AdviceAPI = require('../../apiDatasource/adviceAPI')
 
 
-async function api(parent, args) {
-
-    const weather = async function() {
-        return await WeatherAPI(args.city)
-    }
-
-    const news = async function() {
-        return await ArticleAPI.data
-    }
+async function api() {
 
     const chuckJoke = async function() {
         return await ChuckAPI()
     }
 
+    const advice = async function() {
+        return await AdviceAPI()
+    }
+
     return {
-        weather,
-        news,
-        chuckJoke
+        chuckJoke, advice
     }
 }
 
 function info() {
-    return "This is an API aggregation made by Jake Tran"
+    return "This is an API aggregation using Graphql made by Jake Tran"
 }
 
 module.exports = {
-    // weather,
-    // news,
-    // chuckJoke,
     info,
     api
 }
